@@ -1,0 +1,49 @@
+
+<div>
+    <div class="container">
+      <h1>Libros</h1>
+      <form [formGroup]="form" (submit)="aceptar()">
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Id</mat-label>
+        <input matInput placeholder="Id" formControlName="id">
+      </mat-form-field>
+  
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Libro</mat-label>
+        <input matInput required placeholder="Libro" formControlName="nameBook">
+      </mat-form-field>
+      <br>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Número de Hojas</mat-label>
+        <input type="number" matInput required placeholder="Hojas" formControlName="numberPages">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de publicación</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="publicationDateBook" [max]="maxFecha">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+  
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Autor</mat-label>
+        <mat-select formControlName="author" [(value)]="idAuthorSeleccionado" required>
+          <mat-option *ngFor="let a of lista" [value]="a.id">
+            {{a.nameAuthor}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+  
+        <button mat-raised-button color="primary" (click)="aceptar()">Aceptar</button>
+  
+        <button mat-raised-button color="warn" routerLink="/books">Cancelar</button>
+      <p>{{mensaje}}</p>
+      </form>
+    </div>
+  </div>
